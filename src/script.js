@@ -69,6 +69,7 @@ const questions_html = document.getElementById("questions");
 const optionsdiv = document.querySelector("#optionDiv");
 const button = document.querySelector("#Button");
 const quizContainer = document.getElementById("quiz-container");
+const timer = document.getElementById("timer");
 const parseQuestions = (i) => {
   questions_html.innerText = `${i + 1} : ${questions[i].question}`;
   optionsdiv.innerHTML = "";
@@ -127,3 +128,13 @@ button.addEventListener("click", function () {
 });
 // console.log(`Question no ${QuestionNo}`);
 parseQuestions(QuestionNo);
+let sec = 60;
+setInterval(() => {
+  timer.innerHTML = `00:${sec--}`;
+  if (sec === 0) {
+    quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
+          <h2 >Congratulations! You have completed all questions.<br>
+            Your Score is <span class="text-yellow-500"> ${score}</span></h2>
+        </div> `;
+  }
+}, 1000);
