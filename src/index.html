@@ -3,12 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Quiz App</title>
     <link rel="stylesheet" href="output.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: "poppins", sans-serif;
+}
+    </style>
   </head>
-  <body>
-    <div>
-      <h1 class="">Hello World</h1>
+  <body class=" w-full h-screen  flex items-center flex-col ">
+    <div class="w-full text-yellow-500 text-center text-3xl font-bold p-4 bg-slate-800" >
+      <h2>QUIZ APP</h2>
     </div>
+    <div class="self-center m-auto sm:w-2xl w-full px-2">
+      <div class=" border-2 w-full overflow-hidden bg-white rounded-2xl shadow-slate-500 shadow-md">
+        <div class="text-slate-800 p-4 text-2xl font-bold border-slate-800 border-b-2 mx-2">
+          <h2 class="text-3xl">What is HTML Stands For ?</h2>
+        </div>
+        <div class="py-2 px-4 mt-3">
+          <div class="my-2 flex gap-4 flex-col">
+            <div>
+              <input type="radio" name="group1" class="option" />
+              <label class=" mx-1 text-lg text-slate-800 " >Hyper Text Markup Language</;>
+            </div>
+            <div>
+
+              <input type="radio" name="group1" class="option" />
+              <label class=" mx-1 text-lg text-slate-800 " >Hyper Text Markup Language</;>
+            </div>
+            <div>
+
+              <input type="radio" name="group1" class="option" />
+              <label class=" mx-1 text-lg text-slate-800" >Hyper Text Markup Language</;>
+            </div>
+            <div>
+
+              <input type="radio" name="group1" class="option" />
+              <label class=" mx-1 text-lg text-slate-800">Hyper Text Markup Language</;>
+            </div>
+         
+          </div>
+        </div>
+        <div class="py-2 px-4 flex justify-end">
+          <button class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2  border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800 " >Previous</button>
+      </div>
+    </div>
+</div>
+<div class="w-full text-yellow-500 text-center text-sm font-bold p-4 bg-slate-800" >
+  <h2>© 2025 QUIZ APP. All rights reserved.
+  </h2>
+</div>
   </body>
 </html>
