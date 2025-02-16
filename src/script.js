@@ -82,6 +82,7 @@ const parseQuestions = (i) => {
   }
 };
 let QuestionNo = 0;
+console.log(QuestionNo);
 let score = 0;
 button.addEventListener("click", function () {
   if (QuestionNo === 8) {
@@ -107,7 +108,16 @@ button.addEventListener("click", function () {
         quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
           <h2 >Congratulations! You have completed all questions.<br>
             Your Score is <span class="text-yellow-500"> ${score}</span></h2>
-        </div>`;
+        <button
+            class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2 border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800"
+            id="reset"
+          >Restart</button>
+        </div> `;
+        document.getElementById("reset").addEventListener("click", () => {
+          window.location.reload();
+          QuestionNo = 0;
+          parseQuestions(QuestionNo);
+        });
       } else {
         QuestionNo++;
         if (QuestionNo < questions.length) {
@@ -123,10 +133,8 @@ button.addEventListener("click", function () {
   } else {
     alert("Please select an option");
   }
-
-  //   console.log(`Question no ${QuestionNo}`);
 });
-// console.log(`Question no ${QuestionNo}`);
+
 parseQuestions(QuestionNo);
 let sec = 60;
 setInterval(() => {
@@ -135,6 +143,15 @@ setInterval(() => {
     quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
           <h2 >Congratulations! You have completed all questions.<br>
             Your Score is <span class="text-yellow-500"> ${score}</span></h2>
+              <button
+            class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2 border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800"
+            id="reset"
+          >Restart</button>
         </div> `;
+    document.getElementById("reset").addEventListener("click", () => {
+      window.location.reload();
+      QuestionNo = 0;
+      parseQuestions(QuestionNo);
+    });
   }
 }, 1000);
