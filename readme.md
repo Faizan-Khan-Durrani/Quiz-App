@@ -77,6 +77,8 @@ The app features a **card-based interface**, where users can select a category a
 
 This project is open-source and free to use. Feel free to modify and improve it.
 
+---
+
 ## 👨‍💻 Contribution
 
 Want to improve this project? Contributions are welcome!
