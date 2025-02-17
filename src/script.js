@@ -425,57 +425,40 @@ const parseQuestions = (i) => {
 };
 parseQuestions(0);
 let QuestionNo = 0;
-
 let score = 0;
 button.addEventListener("click", function () {
   if (QuestionNo === 8) {
     button.innerText = "Submit";
     button.addEventListener("mouseover", function () {
-      button.style.backgroundColor = "#4A5D76"; // Change on hover
+      button.style.backgroundColor = "#F0B100"; // Change on hover
     });
 
     button.addEventListener("mouseout", function () {
       button.style.backgroundColor = "#1D293D"; // Reset on mouse out
     });
   }
-
-  if (document.querySelector('input[name="group1"]:checked')) {
-    console.log(QuestionNo);
-    if (
-      document.querySelector('input[name="group1"]:checked').nextElementSibling
-        .innerText === questions[key][QuestionNo].correctAnswer
-    ) {
-      score++;
-      console.log(QuestionNo);
-      console.log(questions[key].length);
-      if (QuestionNo === questions[key].length) {
-        quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
-        <h2 >Congratulations! You have completed all questions.<br>
-          Your Score is <span class="text-yellow-500"> ${score}</span></h2>
-      <button
-          class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2 border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800"
-          id="reset"
-        >Restart</button>
-      </div> `;
-        document.getElementById("reset").addEventListener("click", () => {
-          window.location.reload();
-          QuestionNo = 0;
-          parseQuestions(QuestionNo);
-        });
-      } else {
-        QuestionNo++;
-        if (QuestionNo < questions[key].length) {
-          parseQuestions(QuestionNo);
-        }
-      }
+  if (document.querySelector('input[name="group1"]:checked') === null) {
+    alert("Please select an option");
+    return;
+  }
+  if (
+    document.querySelector('input[name="group1"]:checked').nextElementSibling
+      .innerText === questions[key][QuestionNo].correctAnswer
+  ) {
+    score++;
+    if (QuestionNo + 1 === questions[key].length) {
+      result(score);
     } else {
+      QuestionNo++;
       if (QuestionNo < questions[key].length) {
-        QuestionNo++;
         parseQuestions(QuestionNo);
       }
     }
-  } else {
-    alert("Please select an option");
+  } else if (QuestionNo + 1 === questions[key].length) {
+    result(score);
+  } else if (QuestionNo < questions[key].length) {
+    QuestionNo++;
+    parseQuestions(QuestionNo);
   }
 });
 
@@ -484,18 +467,22 @@ let sec = 60;
 setInterval(() => {
   timer.innerHTML = `00:${sec--}`;
   if (sec === 0) {
-    quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
-        <h2 >Congratulations! You have completed all questions.<br>
-          Your Score is <span class="text-yellow-500"> ${score}</span></h2>
-            <button
-          class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2 border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800"
-          id="reset"
-        >Restart</button>
-      </div> `;
-    document.getElementById("reset").addEventListener("click", () => {
-      window.location.reload();
-      QuestionNo = 0;
-      parseQuestions(QuestionNo);
-    });
+    result(score);
   }
 }, 1000);
+
+function result(score) {
+  quizContainer.innerHTML = `  <div class="text-slate-800  p-4 text-xl font-bold border-slate-800 border-b-2 mx-2 flex items-center justify-center flex-col  text-center  ">
+  <h2 >Congratulations! You have completed all questions.<br>
+    Your Score is <span class="text-yellow-500"> ${score}</span></h2>
+<button
+    class="bg-yellow-500 text-white px-4 py-2 rounded-md border-2 border-slate-800 outline-0 hover:bg-slate-800 cursor-pointer hover:duration-500 hover:ease-in hover:text-white hover:border-2 hover:border-slate-800"
+    id="reset"
+  >Restart</button>
+</div> `;
+  document.getElementById("reset").addEventListener("click", () => {
+    window.location.reload();
+    QuestionNo = 0;
+    parseQuestions(QuestionNo);
+  });
+}
